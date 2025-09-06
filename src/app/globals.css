@@ -1,26 +1,213 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+	--color-background: hsl(210 25% 98%);
+	--color-foreground: hsl(215 25% 15%);
+
+	--color-card: hsl(0 0% 100%);
+	--color-card-foreground: hsl(215 25% 15%);
+
+	--color-popover: hsl(0 0% 100%);
+	--color-popover-foreground: hsl(215 25% 15%);
+
+	/* Cherry Blossom Pink */
+	--color-primary: hsl(340 65% 75%);
+	--color-primary-foreground: hsl(0 0% 100%);
+
+	/* Soft Sky Blue */
+	--color-secondary: hsl(200 45% 85%);
+	--color-secondary-foreground: hsl(215 25% 15%);
+
+	/* Warm Peach */
+	--color-accent: hsl(25 55% 80%);
+	--color-accent-foreground: hsl(215 25% 15%);
+
+	/* Soft Lavender */
+	--color-muted: hsl(260 35% 90%);
+	--color-muted-foreground: hsl(215 15% 45%);
+
+	--color-destructive: hsl(0 75% 70%);
+	--color-destructive-foreground: hsl(0 0% 100%);
+
+	--color-border: hsl(210 20% 90%);
+	--color-input: hsl(210 20% 95%);
+	--color-ring: hsl(340 65% 75%);
+
+	--radius: 1rem;
+
+	/* Custom Design Tokens */
+	--color-cherry-blossom: hsl(340 70% 82%);
+	--color-sky-blue: hsl(200 50% 88%);
+	--color-warm-peach: hsl(25 60% 85%);
+	--color-soft-lavender: hsl(260 40% 92%);
+	--color-cream: hsl(45 30% 96%);
+	--color-deep-navy: hsl(215 35% 20%);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+@layer base {
+	:root {
+		/* Gradients */
+		--gradient-sunset: linear-gradient(135deg, hsl(340 70% 82%), hsl(25 60% 85%));
+		--gradient-sky: linear-gradient(180deg, hsl(200 50% 88%), hsl(45 30% 96%));
+		--gradient-dreamy: linear-gradient(45deg, hsl(260 40% 92%), hsl(340 70% 82%));
+
+		/* Shadows */
+		--shadow-soft: 0 4px 20px hsl(340 70% 82% / 0.15);
+		--shadow-dreamy: 0 8px 32px hsl(260 40% 92% / 0.2);
+		--shadow-elegant: 0 12px 40px hsl(215 35% 20% / 0.1);
+
+		/* Animation Durations */
+		--transition-slow: 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+		--transition-smooth: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+		--transition-quick: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+	}
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+@layer base {
+	* {
+		@apply border-border;
+	}
+
+	body {
+		@apply bg-background text-foreground;
+		font-family: var(--font-geist-sans), "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+	}
+
+	html {
+		scroll-behavior: smooth;
+	}
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer components {
+	/* Cherry Blossom Animation */
+	.cherry-blossom {
+		position: absolute;
+		width: 8px;
+		height: 8px;
+		background: var(--color-cherry-blossom);
+		border-radius: 50%;
+		animation: float-down 8s infinite linear;
+		opacity: 0.7;
+	}
+
+	.cherry-blossom::before {
+		content: "";
+		position: absolute;
+		top: -2px;
+		left: -2px;
+		width: 4px;
+		height: 4px;
+		background: var(--color-primary);
+		border-radius: 50%;
+	}
+
+	/* Portfolio Hero Animations */
+	.hero-text {
+		animation: fade-up 1.2s ease-out forwards;
+		animation-delay: 2s;
+		opacity: 0;
+	}
+
+	.hero-subtitle {
+		animation: fade-up 1s ease-out forwards;
+		animation-delay: 2.5s;
+		opacity: 0;
+	}
+
+	.floating-element {
+		animation: gentle-float 6s ease-in-out infinite;
+	}
+
+	/* Custom Button Variants */
+	.btn-portfolio {
+		background: linear-gradient(to right, var(--color-primary), var(--color-accent));
+		color: var(--color-primary-foreground);
+		transition: all 0.3s ease;
+		border-radius: 9999px;
+		padding: 0.5rem 1.5rem;
+		font-weight: 500;
+		box-shadow: var(--shadow-soft);
+	}
+
+	.btn-portfolio:hover {
+		transform: scale(1.05) translateY(-2px);
+		box-shadow: var(--shadow-dreamy);
+	}
+
+	.btn-ghost-portfolio {
+		border: 2px solid var(--color-primary);
+		color: var(--color-primary);
+		background: transparent;
+		transition: all 0.3s ease;
+		border-radius: 9999px;
+		padding: 0.5rem 1.5rem;
+		font-weight: 500;
+	}
+
+	.btn-ghost-portfolio:hover {
+		background: var(--color-primary);
+		color: var(--color-primary-foreground);
+	}
+}
+
+@layer utilities {
+	/* Animation Keyframes */
+	@keyframes float-down {
+		0% {
+			transform: translateY(-100vh) rotate(0deg);
+			opacity: 0;
+		}
+		10% {
+			opacity: 0.7;
+		}
+		90% {
+			opacity: 0.7;
+		}
+		100% {
+			transform: translateY(100vh) rotate(360deg);
+			opacity: 0;
+		}
+	}
+
+	@keyframes fade-up {
+		from {
+			opacity: 0;
+			transform: translateY(30px);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+
+	@keyframes gentle-float {
+		0%,
+		100% {
+			transform: translateY(0px);
+		}
+		50% {
+			transform: translateY(-20px);
+		}
+	}
+
+	@keyframes pulse-glow {
+		0%,
+		100% {
+			box-shadow: 0 0 20px hsl(340 70% 82% / 0.3);
+		}
+		50% {
+			box-shadow: 0 0 40px hsl(340 70% 82% / 0.6);
+		}
+	}
+
+	/* Utility Classes */
+	.gradient-text {
+		background: var(--gradient-sunset);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		color: transparent;
+	}
 }
