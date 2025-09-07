@@ -45,6 +45,15 @@
 }
 
 @layer base {
+	/* Custom Fonts */
+	@font-face {
+		font-family: "PPMondwest";
+		src: url("/ppmondwest-regular.otf") format("opentype");
+		font-weight: normal;
+		font-style: normal;
+		font-display: swap;
+	}
+
 	:root {
 		/* Gradients */
 		--gradient-sunset: linear-gradient(135deg, hsl(340 70% 82%), hsl(25 60% 85%));
@@ -84,6 +93,7 @@
 	/* Cherry Blossom Animation */
 	.cherry-blossom {
 		position: absolute;
+		top: -10px;
 		width: 8px;
 		height: 8px;
 		background: var(--color-cherry-blossom);

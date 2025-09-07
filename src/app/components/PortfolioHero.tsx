@@ -10,7 +10,7 @@ const PortfolioHero = () => {
 			<div
 				className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-70"
 				style={{
-					backgroundImage: `url('/background.png')`,
+					backgroundImage: `url('/background.webp')`,
 				}}
 			/>
 
