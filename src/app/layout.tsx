@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-	title: "Jonathan Yin - Creative Designer & Visual Storyteller",
+	title: "Jonathan Yin",
 	description: "Portfolio of Jonathan Yin, a creative designer and visual storyteller specializing in modern, minimalist design solutions.",
 	keywords: "designer, visual design, creative, portfolio, storytelling, minimalist design",
 	authors: [{ name: "Jonathan Yin" }],

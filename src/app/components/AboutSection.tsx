@@ -106,7 +106,7 @@ const AboutSection = () => {
 
 						{/* Call to action */}
 						<div className="pt-4">
-							<a href="#contact" className="inline-flex items-center space-x-2 text-primary hover:text-accent transition-colors duration-300 font-medium group">
+							<a href="contact" className="inline-flex items-center space-x-2 text-primary hover:text-accent transition-colors duration-300 font-medium group">
 								<span>Let&apos;s create something beautiful together</span>
 								<svg className="w-5 h-5 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 									<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
